@@ -1,15 +1,25 @@
 package utils;
+import java.util.Random;
 import warrior.*;
 import armor.*;
 import weapon.*;
 
 public class Setup {
 
-    
+    private Random randNum = new Random();
     
     private Warrior warrior;
-    private Armor armor;
-    private Weapon weapon;
+
+    //strike affect:
+    private int addtionalDamage;
+    private int luck;
+    private int speedDiff;
+    private int hitChance;
+    private int cost;
+    
+
+
+
     public Setup() {
 
     }
@@ -39,42 +49,32 @@ public class Setup {
         return warrior;
     } // createWarrior()
 
-    public Armor armorSelection(int choice) {
-        switch(choice) {
-            case 1:
-                armor = new Leather();
-                break;
-            case 2:
-                armor = new ChainShirt();
-                break;
-            case 3:
-                armor = new BreastPlate();
-                break;
-            default: {}
+    public int strike(int choice, Warrior striker ,Warrior receiver) {
+        int totalDamage = 0;
+        if (choice == 1) {
+            luck = randNum.nextInt(50); //bound of 100%
+        } else if (choice == 2) {
+            cost = 7; //cost 7 staminia for swing attack
+            luck = randNum.nextInt(25); //bound of 50%
+            addtionalDamage += 30;
+        } else {
+            luck = 100;
         }
-        return armor;
-    }
 
-    public Weapon weaponSelection(int choice) {
-        switch(choice) {
-            case 1:
-                weapon = new Axe();
-                break;
-            case 2:
-                weapon = new Sword();
-                break;
-            case 3:
-                weapon = new Bow();
-                break;
-            case 4:
-                weapon = new Dagger();
-                break;
-            case 5:
-                weapon = new Riftmaker();
-                break;
-            default: {}
-
+        speedDiff = striker.getSpeed() - receiver.getSpeed();
+        hitChance = luck + speedDiff;
+        
+        if (hitChance <= 0) {
+            totalDamage = 0;
+        } else if (hitChance > 0 && hitChance <=50) {
+            totalDamage += striker.getDamage() + addtionalDamage + hitChance;
+        } else {
+            addtionalDamage += 20;
+            totalDamage += striker.getDamage() + addtionalDamage + hitChance;
         }
-        return weapon;
+
+
+        addtionalDamage = 0;
+        return totalDamage;
     }
 }

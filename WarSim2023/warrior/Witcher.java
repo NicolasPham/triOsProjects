@@ -3,10 +3,10 @@ package warrior;
 public class Witcher extends Warrior {
     private int minHealth = 900;
     private int maxHealth = 1100;
-    private int defend = 60;
-    private int damage = 120;
+    private int defend = 30;
+    private int damage = 60;
     private int staminia = 10;
-    private int speed = 60;
+    private int speed = 40;
     private String ability = "Poisoned Gas";
 
 

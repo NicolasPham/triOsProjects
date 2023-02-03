@@ -6,7 +6,7 @@ public class Weapon {
     public int[] speed = {-20, 20, 30, 50, -20};
     public int[] defend = {20, 40, -10, -10, -20};
 
-    private int[] weapon;
+    private int[] weapon; //[damge, speed, defend]
 
     public int[] getWeapon() {
         return this.weapon;

@@ -3,10 +3,10 @@ package warrior;
 public class Assasin extends Warrior {
     private int minHealth = 400;
     private int maxHealth = 500;
-    private int defend = 100;
-    private int damage = 160;
+    private int defend = 50;
+    private int damage = 80;
     private int staminia = 70;
-    private int speed = 100;
+    private int speed = 70;
     private String ability = "Critical Strike";
 
 

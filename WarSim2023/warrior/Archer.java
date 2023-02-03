@@ -3,10 +3,10 @@ package warrior;
 public class Archer extends Warrior {
     private int minHealth = 450;
     private int maxHealth = 650;
-    private int defend = 80;
-    private int damage = 160;
+    private int defend = 40;
+    private int damage = 80;
     private int staminia = 70;
-    private int speed = 120;
+    private int speed = 70;
     private String ability = "Fireball";
 
 

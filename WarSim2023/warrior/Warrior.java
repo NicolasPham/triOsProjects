@@ -3,7 +3,7 @@ import java.util.Random;
 import weapon.*;
 import armor.*;
 
-public class Warrior {
+public abstract class Warrior {
 
     protected Random randNum = new Random();
     private int health;
@@ -14,8 +14,8 @@ public class Warrior {
     private String ability;
 
     // Composition
-    private Weapon weapon;
-
+    private Weapon weapon; //getWeapon return [damage, speed, defend]
+    private Armor armor; //getArmor return [defend, speed]
 
     public Warrior() {
 
@@ -42,6 +42,13 @@ public class Warrior {
         return this.ability;
     }
 
+    public Armor armor() {
+        return this.armor;
+    }
+    public Weapon weapon() {
+        return this.weapon;
+    }
+
     //setter
     protected void setHealth(int health) {
         this.health = health;
@@ -63,6 +70,49 @@ public class Warrior {
     }
 
     //polymorphic
+    public void setArmor(int choice) {
+        switch(choice) {
+            case 1:
+                armor = new Leather();
+                break;
+            case 2:
+                armor = new ChainShirt();
+                break;
+            case 3:
+                armor = new BreastPlate();
+                break;
+            default: {}
+        }
 
+    } //setArmor
+
+    public void setWeapon(int choice) {
+        switch(choice) {
+            case 1:
+                weapon = new Axe();
+                break;
+            case 2:
+                weapon = new Sword();
+                break;
+            case 3:
+                weapon = new Bow();
+                break;
+            case 4:
+                weapon = new Dagger();
+                break;
+            case 5:
+                weapon = new Riftmaker();
+                break;
+            default: {}
+        }
+
+    } //setWeapon
+
+
+    public void setStatus() {
+        this.damage += weapon.getWeapon()[0];
+        this.speed += armor.getArmor()[1] + weapon.getWeapon()[1];
+        this.defend += armor.getArmor()[0] + weapon.getWeapon()[2];
+    }
     
 }

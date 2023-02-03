@@ -10,6 +10,8 @@ public class Printer {
     public Armor armor = new Armor();
     public Weapon weapon = new Weapon();
     public String[] listCharacter = {"Knight", "Priest", "Assasin", "Archer", "Barbarian", "Witcher"};
+    public String[] listArmor = {"Leather" ,"ChainShirt", "BreastPlate"};
+    public String[] listWeapon = {"Axe", "Sword", "Bow", "Dagger", "Riftmaker"}; //{0, 1, 2, 3, 4}
 
     public Printer() {
 
@@ -56,12 +58,12 @@ public class Printer {
     }
 
     public void currentStats(Warrior warrior) {
-        System.out.println(color.RED_BRIGHT + "Health: \t" + warrior.getHealth() + color.RESET);
+        System.out.println(color.RED_BRIGHT + "Health: \t" + warrior.getHealth());
         System.out.println("Defend: \t" + warrior.getDefend());
         System.out.println("Damage: \t" + warrior.getDamage());
         System.out.println("Staminia:\t" + warrior.getStaminia());
-        System.out.println("Speed / Dex: \t" + warrior.getSpeed());
-        System.out.println("Spec.ab: \t" + warrior.getAbility());
+        System.out.println("Speed / Dex: \t" + warrior.getSpeed() + color.RESET);
+        System.out.println("");
     }
 
 /******************** Armor Selection ********************************/ 
@@ -77,5 +79,14 @@ public class Printer {
         for (int i=0; i < weapon.listWeapon.length; i++)
         System.out.printf("%d) %s: \t%d damage, %d speed, %d defend\n", i+1, weapon.listWeapon[i], weapon.damage[i], weapon.speed[i], weapon.defend[i]);
     }
+
+/*<=========================== Attack ===========================>*/ 
+    public void strikeOptions() {
+        System.out.println("It's your turn, let choose how you want to attack:");
+        System.out.println("1) Basic");
+        System.out.println("2) Swing");
+        System.out.println(color.RED + "3) Special skill" + color.RESET);
+    }
+
 
 }

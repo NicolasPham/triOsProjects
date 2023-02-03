@@ -3,40 +3,40 @@
 ### Setup Game:
 - There will be 3 types of Warrior : Human, Elf, Orc
 
-    - Human: 2 types for Knight, Priest (staminia = 30 points, Speed/Dexterity 80)
+    - Human: 2 types for Knight, Priest (staminia = 30 points, Speed/Dexterity 60)
       - Knight:
         > Health: 800-880
-        > Defend: 130
-        > Damage: 120
+        > Defend: 65
+        > Damage: 60
         > Special Ability: Unbreakable: + 60 Defend, -8 staminia
       - Priest:
         > Health: 550-650
-        > Defend: 90
-        > Damage: 100
+        > Defend: 45
+        > Damage: 50
         > Special Ability: Heal: + 90 Health, -10 staminia
 
-    - Elf: 2 types for Assasin, Sorcerer (staminia = 70 points, damage = 160)
+    - Elf: 2 types for Assasin, Sorcerer (staminia = 70 points, damage = 80)
       - Assasin:
         > Health: 400-500
-        > Defend: 100
-        > Speed / Dexterity: 100
+        > Defend: 50
+        > Speed / Dexterity: 80
         > Special Ability: Critial Strike: + 45 Damage, -8 staminia
       - Archer:
         > Health: 450-650
-        > Defend: 80
-        > Speed / Dexterity: 120
+        > Defend: 40
+        > Speed / Dexterity: 70
         > Special Ability: Fireball: + 90 Speed, -10 staminia
 
     - Orc: 2 types for Barbarian, Witcher (staminia = 10 points, Health = 900-1100)
       - Barbarian:
-        > Defend: 170
-        > Damage: 130
+        > Defend: 85
+        > Damage: 65
         > Speed / Dexterity: 20
         > Special Ability: Smash: + 20 Damage, -5 staminia
       - Witcher:
-        > Defend: 60
-        > Damage: 120 points
-        > Speed / Dexterity: 60
+        > Defend: 30
+        > Damage: 60 points
+        > Speed / Dexterity: 40
         > Special Ability: Poison Gas: - 90 defend, -5 staminia
 
   #### Weapon class:
@@ -73,6 +73,13 @@
     > Speed: + 0
 
 ### Logic Combat:
+- 3 types of attack:
+ > basic: regular damage, less chance to miss
+ > swing: +30 damage, more chance to miss and cost 7points staminia
+ > special skill: never miss, cost more staminia
+- when receive damage: receiver will gain 5 staminia each time
+
+
 - Skill:
   > IF staminia > skill cost -> player can cast the skill. Depends on the skill, additional number will be added accordingly. And remove accordingly after using the skill so next turn all damage will be back to normal
   > For bot: if stamninia > skill cost, create a random Number, if that number > 50, then the bot will cast the skill

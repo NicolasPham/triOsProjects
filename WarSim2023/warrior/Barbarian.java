@@ -3,8 +3,8 @@ package warrior;
 public class Barbarian extends Warrior {
     private int minHealth = 900;
     private int maxHealth = 1100;
-    private int defend = 170;
-    private int damage = 130;
+    private int defend = 85;
+    private int damage = 65;
     private int staminia = 10;
     private int speed = 20;
     private String ability = "Smash";

@@ -4,10 +4,10 @@ public class Knight extends Warrior{
 
     private int minHealth = 800;
     private int maxHealth = 880;
-    private int defend = 130;
-    private int damage = 120;
+    private int defend = 65;
+    private int damage = 60;
     private int staminia = 30;
-    private int speed = 80;
+    private int speed = 60;
     private String ability = "Unbreakable";
 
 
