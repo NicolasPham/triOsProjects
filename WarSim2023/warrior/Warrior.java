@@ -15,6 +15,7 @@ public abstract class Warrior {
 
     protected int buffAmount;
     public int roundBuff;
+    public boolean isBuff;
 
     // Composition
     private Weapon weapon; //getWeapon return [damage, speed, defend]

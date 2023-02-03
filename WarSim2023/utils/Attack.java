@@ -34,10 +34,17 @@ public class Attack {
             luck = randNum.nextInt(60);
             addtionalDamage += randNum.nextInt(30) + 20;
         } else {//! special skill, 100% will hit
-            luck = 100;
-            striker.specialSkill();
+            if (!striker.isBuff) {
+                luck = randNum.nextInt(50) + 50; //bound from 50 - 100%
+                striker.specialSkill();
+                striker.isBuff = true;
+            } else {
+                System.out.println("Not allowed, you have already used skill");
+                striker.isBuff = false;
+            }
         }
-
+        System.out.println("Buff " + striker.getDefend());
+        System.out.println("Round " + striker.roundBuff);
         speedDiff = striker.getSpeed() - receiver.getSpeed();
         if (speedDiff > 0) {
             speedFactor = randNum.nextInt(speedDiff);
@@ -64,7 +71,16 @@ public class Attack {
         strikeResult[1] = gain;
         strikeResult[2] = cost;
         
+        if (striker.isBuff) {
+            if (striker.roundBuff > 1) {
+                striker.roundBuff -= 1;
+            } else {
+                striker.removeBuff();
+                striker.isBuff = false;
+            }
+        }
         
+        System.out.println("<==============End Round==============>");
         addtionalDamage = 0;
         return strikeResult;
     }// striker
