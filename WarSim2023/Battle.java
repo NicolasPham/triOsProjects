@@ -28,7 +28,7 @@ public class Battle {
     //General
     private static Armor armor = new Armor();
     private static Weapon weapon = new Weapon();
-    private static int damageAmount;
+    private static int[] strikeResult;
     private static boolean isOVer = false;
 
     public static void main(String[] args) {
@@ -109,8 +109,9 @@ public class Battle {
         while (!isOVer) {
             ink.strikeOptions();
             choice = input.nextInt();
-            damageAmount = setup.strike(choice, pWarrior, bWarrior);
-            System.out.println(damageAmount);
+            strikeResult = setup.strike(choice, pWarrior, bWarrior);
+            bWarrior.setStatus();
+            
         }
         
 

@@ -41,24 +41,24 @@
 
   #### Weapon class:
   - Axe:
-    > Damage: + 70
+    > Damage: + 100
     > Speed: - 20
     > defend: + 20
   - Sword 
-    > Damage: + 40
-    > Speed: + 20
-    > defend: + 40
+    > Damage: + 85
+    > Speed: + 10
+    > defend: + 5
   - Bow:
-    > Damage: + 90
-    > Speed: + 30
-    > defend: - 10
+    > Damage: + 105
+    > Speed: + 15
+    > defend: - 20
   - Dagger:
-    > Damage: + 25
-    > Speed: + 50
+    > Damage: + 70
+    > Speed: + 40
     > defend: - 10
   - Riftmaker:
-    > Damage: + 90
-    > Speed: - 20
+    > Damage: + 120
+    > Speed: 0
     > defend: -20
 
   #### Armor class:
@@ -74,10 +74,16 @@
 
 ### Logic Combat:
 - 3 types of attack:
- > basic: regular damage, less chance to miss
- > swing: +30 damage, more chance to miss and cost 7points staminia
+ > basic: regular damage, more luck from 0 - 100 -> less chance to miss
+ > swing: + 20-50 additionalDamage, cost 7 points staminia, luck 0-60
  > special skill: never miss, cost more staminia
 - when receive damage: receiver will gain 5 staminia each time
+- "luck" affect on strike?:
+   > luck < 40: miss
+   > 40 < luck < 80 : attack has additional damage
+   > luck > 80: special skill
+
+   > speed Difference: if speedDiff > 0 -> return additional damage = random(speedDiff);
 
 
 - Skill:

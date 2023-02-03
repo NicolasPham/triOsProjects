@@ -114,5 +114,6 @@ public abstract class Warrior {
         this.speed += armor.getArmor()[1] + weapon.getWeapon()[1];
         this.defend += armor.getArmor()[0] + weapon.getWeapon()[2];
     }
+    public void setUpdate
     
 }
