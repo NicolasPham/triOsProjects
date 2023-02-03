@@ -20,24 +20,24 @@
         > Health: 400-500
         > Defend: 50
         > Speed / Dexterity: 80
-        > Special Ability: Critial Strike: + 45 Damage, -8 staminia
+        > Special Ability: Critial Strike: + 70 Damage, -8 staminia
       - Archer:
         > Health: 450-650
         > Defend: 40
         > Speed / Dexterity: 70
-        > Special Ability: Fireball: + 90 Speed, -10 staminia
+        > Special Ability: Fireball: + 60 Speed, -10 staminia
 
     - Orc: 2 types for Barbarian, Witcher (staminia = 10 points, Health = 900-1100)
       - Barbarian:
         > Defend: 85
         > Damage: 65
         > Speed / Dexterity: 20
-        > Special Ability: Smash: + 20 Damage, -5 staminia
+        > Special Ability: Smash: + 60 Damage, -5 staminia
       - Witcher:
         > Defend: 30
         > Damage: 60 points
         > Speed / Dexterity: 40
-        > Special Ability: Poison Gas: - 90 defend, -5 staminia
+        > Special Ability: Poison Gas: + 30 Damage, -10 staminia
 
   #### Weapon class:
   - Axe:
@@ -75,7 +75,7 @@
 ### Logic Combat:
 - 3 types of attack:
  > basic: regular damage, more luck from 0 - 100 -> less chance to miss
- > swing: + 20-50 additionalDamage, cost 7 points staminia, luck 0-60
+ > swing: + 20-50 additionalDamage, cost 3 points staminia, luck 0-60
  > special skill: never miss, cost more staminia
 - when receive damage: receiver will gain 5 staminia each time
 - "luck" affect on strike?:

@@ -13,6 +13,9 @@ public abstract class Warrior {
     private int speed;
     private String ability;
 
+    protected int buffAmount;
+    public int roundBuff;
+
     // Composition
     private Weapon weapon; //getWeapon return [damage, speed, defend]
     private Armor armor; //getArmor return [defend, speed]
@@ -114,6 +117,15 @@ public abstract class Warrior {
         this.speed += armor.getArmor()[1] + weapon.getWeapon()[1];
         this.defend += armor.getArmor()[0] + weapon.getWeapon()[2];
     }
-    public void setUpdate
+    public void receiverUpdate(int damamge, int gain) {
+        this.health -= damamge;
+        this.staminia += gain;
+    }
+    public void strikerUpdate(int cost) {
+        this.staminia -=cost;
+    }
+
+    public abstract void specialSkill();
+    public abstract void removeBuff();
     
 }

@@ -85,8 +85,15 @@ public class Printer {
         System.out.println("It's your turn, let choose how you want to attack:");
         System.out.println("1) Basic");
         System.out.println("2) Swing");
-        System.out.println(color.RED + "3) Special skill" + color.RESET);
+        System.out.println(color.YELLOW_BACKGROUND + "3) Special skill" + color.RESET);
     }
 
+    public void playerAttack(int damage, int health) {
+        if (damage > 0 ) {
+            System.out.printf(color.RED_BRIGHT + "You hit %d, and the enemy has %d remaining health\n"  + color.RESET, damage, health);
+        } else {
+            System.out.println(color.GREEN + "You miss the hit" + color.RESET);
+        }
+    }
 
 }

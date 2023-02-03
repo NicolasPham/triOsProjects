@@ -20,4 +20,21 @@ public class Priest extends Warrior{
         super.setSpeed(speed);
         super.setAbility(ability);
     }
+
+    @Override
+    public void specialSkill() {
+        int cost = 10;
+        int amount = 90;
+        
+        buffAmount = amount;
+        roundBuff = 3;
+
+        super.setHealth(super.getHealth() + amount);
+        super.setStaminia(super.getStaminia()-cost);
+    }
+
+    @Override
+    public void removeBuff() {
+        //nothing happen here
+    }
 }

@@ -19,5 +19,26 @@ public class Knight extends Warrior{
         super.setStaminia(staminia);
         super.setSpeed(speed);
         super.setAbility(ability);
+    } //constructor
+
+    @Override
+    public void specialSkill() {
+        int cost = 10;
+        int amount = 60;
+        
+        buffAmount = amount;
+        roundBuff = 3;
+
+        super.setDefend(super.getDefend() + amount);
+        super.setStaminia(super.getStaminia()-cost);
     }
-}
+
+    @Override
+    public void removeBuff() {
+        super.setDefend((super.getDefend() - buffAmount));
+        System.out.println("You have no more buff");
+        roundBuff = 0;
+    }
+
+
+}//clas

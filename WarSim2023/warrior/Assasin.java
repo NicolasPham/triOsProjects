@@ -19,4 +19,22 @@ public class Assasin extends Warrior {
         super.setSpeed(speed);
         super.setAbility(ability);
     }
+
+    @Override
+    public void specialSkill() {
+        int cost = 8;
+        int amount = 70;
+        
+        buffAmount = amount;
+        roundBuff = 1;
+
+        super.setDamage(super.getDamage() + amount);
+        super.setStaminia(super.getStaminia()-cost);
+    }
+
+    @Override
+    public void removeBuff() {
+        super.setDamage((super.getDamage() - buffAmount));
+        System.out.println("You have no more buff");
+    }
 }

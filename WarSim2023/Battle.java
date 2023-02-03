@@ -9,12 +9,13 @@ public class Battle {
 
     private static Scanner input = new Scanner(System.in);
     private static Random randNum = new Random();
-    public ConsoleColor color = new ConsoleColor();
+    private static ConsoleColor color = new ConsoleColor();
 
     //Utils
     private static Printer ink = new Printer();
     private static Setup setup = new Setup();
     private static Validation validation = new Validation();
+    private static Attack attack = new Attack();
 
     //Player setup
     private static Warrior pWarrior;
@@ -30,6 +31,7 @@ public class Battle {
     private static Weapon weapon = new Weapon();
     private static int[] strikeResult;
     private static boolean isOVer = false;
+    private static int turns = 0;
 
     public static void main(String[] args) {
 
@@ -105,14 +107,25 @@ public class Battle {
         pWarrior.setStatus();
         bWarrior.setStatus();
         /*<============== Attack ==============>*/
-        System.out.println("<<============ LET'S GO ==========>>");
+        System.out.println(color.BLUE_BACKGROUND_BRIGHT + "<<============ LET'S GO ==========>>" + color.RESET);
         while (!isOVer) {
+        //Player turn:
+            turns += 1;
+            System.out.printf(color.PURPLE + "Round %d\n " + color.RESET, turns);
             ink.strikeOptions();
             choice = input.nextInt();
-            strikeResult = setup.strike(choice, pWarrior, bWarrior);
-            bWarrior.setStatus();
+            strikeResult = attack.strike(choice, pWarrior, bWarrior);
+            bWarrior.receiverUpdate(strikeResult[0], strikeResult[1]);
+            pWarrior.strikerUpdate(strikeResult[1]);
+
+            //?Printing the sult
+            ink.playerAttack(strikeResult[0], bWarrior.getHealth() >= 0 ? bWarrior.getHealth() : 0);
+
+            if (bWarrior.getHealth() <= 0 ) isOVer = true;
             
-        }
+        }//game over
+        System.out.println(color.YELLOW_BOLD_BRIGHT + "GAME OVER!" + color.RESET);
+        System.out.printf("You win after %d rounds!!!!!\n", turns);
         
 
         

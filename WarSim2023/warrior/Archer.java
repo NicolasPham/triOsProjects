@@ -19,4 +19,21 @@ public class Archer extends Warrior {
         super.setSpeed(speed);
         super.setAbility(ability);
     }
+    @Override
+    public void specialSkill() {
+        int cost = 10;
+        int amount = 60;
+        
+        buffAmount = amount;
+        roundBuff = 2;
+
+        super.setSpeed(super.getSpeed() + amount);
+        super.setStaminia(super.getStaminia()-cost);
+    }
+
+    @Override
+    public void removeBuff() {
+        super.setSpeed((super.getSpeed() - buffAmount));
+        System.out.println("You have no more buff");
+    }
 }
