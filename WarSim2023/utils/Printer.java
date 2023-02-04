@@ -81,18 +81,19 @@ public class Printer {
     }
 
 /*<=========================== Attack ===========================>*/ 
-    public void strikeOptions() {
+    public void strikeOptions(Warrior striker) {
         System.out.println("It's your turn, let choose how you want to attack:");
         System.out.println("1) Basic");
-        System.out.println("2) Swing");
-        System.out.println(color.YELLOW_BACKGROUND + "3) Special skill" + color.RESET);
+        if (striker.getStaminia() > 3)  System.out.println("2) Swing");
+        if (striker.getStaminia() > striker.costSkill) System.out.println(color.BLUE + "3) Special skill" + color.RESET);
+        System.out.println("--press 0 for Surrender !!--");
     }
 
-    public void playerAttack(int damage, int health) {
+    public void playerAttack(String striker, String receiver, int damage, int health) {
         if (damage > 0 ) {
-            System.out.printf(color.RED_BRIGHT + "You hit %d, and the enemy has %d remaining health\n"  + color.RESET, damage, health);
+            System.out.printf(color.RED_BRIGHT + "%s hit %d, and the %s has %d remaining health\n"  + color.RESET, striker, damage, receiver, health);
         } else {
-            System.out.println(color.GREEN + "You miss the hit" + color.RESET);
+            System.out.println(color.GREEN + "Missed the hit" + color.RESET);
         }
     }
 

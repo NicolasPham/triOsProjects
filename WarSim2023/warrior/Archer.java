@@ -21,14 +21,14 @@ public class Archer extends Warrior {
     }
     @Override
     public void specialSkill() {
-        int cost = 10;
+        this.costSkill = 10;
         int amount = 60;
         
         buffAmount = amount;
         roundBuff = 2;
 
         super.setSpeed(super.getSpeed() + amount);
-        super.setStaminia(super.getStaminia()-cost);
+        super.setStaminia(super.getStaminia()-costSkill);
     }
 
     @Override

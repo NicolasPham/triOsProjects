@@ -1,14 +1,24 @@
 package utils;
 import warrior.*;
+import java.lang.Thread;
 
 
-public class Setup {
+public class Setup extends Thread {
 
     private Warrior warrior;
 
 
     public Setup() {
 
+    }
+
+    public void loading(int miliseconds, String message) {
+        try {
+            System.out.println(message);
+            Thread.sleep(miliseconds);
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
     }
 
     public Warrior createWarrior(int characterChoice) {

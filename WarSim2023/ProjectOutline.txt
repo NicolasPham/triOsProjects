@@ -32,7 +32,7 @@
             package (these must affect the
             gameplay somehow)
 
-            Prompt the user for a name for
+            DONE!!! - Prompt the user for a name for
             their warrior and randomly assign
             a name to the enemy - must be used
             during the match (as in print outs)
@@ -51,10 +51,10 @@
             and turn by turn stats, and game over!
             (above and beyond what we have)
 
-            Give the player the ability to 
+            DONE!!! - Give the player the ability to 
             surrender.
 
-            Track the number of turns, the
+            DONE!!! - Track the number of turns, the
             total damage done and print these
             stats after the match. 
             (when game ends)
@@ -85,7 +85,7 @@
                 Hulk swings and misses.
                 Darth Vader madly swings and hits for 90 damage!
 
-            Add another stat to the warrior - luck,
+            DONE!!! Add another stat to the warrior - luck,
             charm??, age etc... this stat must have
             some affect on the game!
             (or in the weapon or armour parents)
@@ -100,7 +100,7 @@
             All classes/packages and objects must be
             renamed.
 
-            Create a polymorphic special
+            DONE !!! - Create a polymorphic special
             ability based on the warrior's class.
                 Human   - healing(restores health)?
                 Elf     - Legolos(rapid-fire)
@@ -114,7 +114,7 @@
             Provide a save file name so the user
             can tell the difference in saves. (7 points)
 
-            Subtype the 3 children from the warrior
+            DONE!!! - Subtype the 3 children from the warrior
             package, for example:
 
                     The Human subclass could have
@@ -130,7 +130,7 @@
         ///////////////////////////////////////
         // Advanced (10 points)
 
-            Rewrite the application, but instead
+            DONE !!! - Rewrite the application, but instead
             of Inheritance, use Composition (a 
             good mixture is fine, but use comp
             where it makes sense) 👍

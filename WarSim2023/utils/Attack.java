@@ -15,36 +15,58 @@ public class Attack {
     private int speedFactor;
     private int cost;
     private int gain;
+    private boolean strikeValid;
+    public int botChoice;
     
-    private int[] strikeResult = {0, 0, 0}; //[total damage, staminia cost, staminia gain]
+    private int totalDamage;
+    
 
 
     public Attack() {
 
     }   
+
+    private void strikeValidation(int staminia, int cost) {
+        if (staminia >= cost) strikeValid = true;
+        else {
+            strikeValid = false;
+        };
+    }
     
-    public int[] strike(int choice, Warrior striker ,Warrior receiver) {
-        int totalDamage = 0;
+    public int strike(int choice, Warrior striker ,Warrior receiver) {
+        totalDamage = 0;
         gain = 0;
         cost = 0;
+
         if (choice == 1) { //* basic attack
             luck = randNum.nextInt(100); 
+
         } else if (choice == 2) { //* */ swing attack
             cost = 3; //cost 3 staminia for swing attack
-            luck = randNum.nextInt(60);
-            addtionalDamage += randNum.nextInt(30) + 20;
-        } else {//! special skill, 100% will hit
-            if (!striker.isBuff) {
+            strikeValidation(striker.getStaminia(), cost);
+
+            if (!strikeValid) {
+                System.out.println("You cannot perform this action");
+            } else {
+                luck = randNum.nextInt(60);
+                addtionalDamage += randNum.nextInt(30) + 20;
+                striker.staminiaUpdate(cost,0);
+            }
+            
+
+        } else if (choice == 3) {//! special skill, 100% will hit
+            strikeValidation(striker.getStaminia(), striker.costSkill);
+            if (striker.isBuff || !strikeValid) {
+                System.out.println("Not allowed");
+                striker.isBuff = false;
+            } else {
                 luck = randNum.nextInt(50) + 50; //bound from 50 - 100%
                 striker.specialSkill();
                 striker.isBuff = true;
-            } else {
-                System.out.println("Not allowed, you have already used skill");
-                striker.isBuff = false;
+                striker.staminiaUpdate(striker.costSkill, 0);
             }
-        }
-        System.out.println("Buff " + striker.getDefend());
-        System.out.println("Round " + striker.roundBuff);
+        } //if statement
+
         speedDiff = striker.getSpeed() - receiver.getSpeed();
         if (speedDiff > 0) {
             speedFactor = randNum.nextInt(speedDiff);
@@ -64,12 +86,14 @@ public class Attack {
 
         if(totalDamage > receiver.getDefend()) totalDamage -= receiver.getDefend();
         
-        if (totalDamage > 0) gain = 5;
+        if (totalDamage > 0) {
+            gain = 5;
+            receiver.staminiaUpdate(0,gain);
+        }
+        
         
         //add to strike result
-        strikeResult[0] = totalDamage;
-        strikeResult[1] = gain;
-        strikeResult[2] = cost;
+
         
         if (striker.isBuff) {
             if (striker.roundBuff > 1) {
@@ -79,11 +103,24 @@ public class Attack {
                 striker.isBuff = false;
             }
         }
-        
-        System.out.println("<==============End Round==============>");
+
         addtionalDamage = 0;
-        return strikeResult;
+        return totalDamage;
     }// striker
 
 
+    public int botChoose(Warrior bot) {
+        int botStaminia = bot.getStaminia();
+        int skillRandom = randNum.nextInt(100);
+        int SwingRandom = randNum.nextInt(100);
+
+        if (botStaminia > bot.costSkill && skillRandom > 50 && !bot.isBuff) {
+            botChoice = 3;
+            System.out.println("Bot cast skill");
+        }  else if (botStaminia > 3l && SwingRandom > 50) {
+            botChoice = 2;
+        } else botChoice = 1;
+
+        return botChoice;
+    }//botchoice
 }

@@ -22,14 +22,14 @@ public class Barbarian extends Warrior {
 
     @Override
     public void specialSkill() {
-        int cost = 5;
+        this.costSkill = 5;
         int amount = 60;
         
         buffAmount = amount;
         roundBuff = 1;
 
         super.setDamage(super.getDamage() + amount);
-        super.setStaminia(super.getStaminia()-cost);
+        super.setStaminia(super.getStaminia()-costSkill);
     }
 
     @Override

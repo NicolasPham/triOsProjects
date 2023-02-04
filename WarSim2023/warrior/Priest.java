@@ -23,14 +23,14 @@ public class Priest extends Warrior{
 
     @Override
     public void specialSkill() {
-        int cost = 10;
+        this.costSkill = 10;
         int amount = 90;
         
         buffAmount = amount;
-        roundBuff = 3;
+        roundBuff = 2;
 
         super.setHealth(super.getHealth() + amount);
-        super.setStaminia(super.getStaminia()-cost);
+        super.setStaminia(super.getStaminia()-costSkill);
     }
 
     @Override

@@ -21,14 +21,14 @@ public class Witcher extends Warrior {
     }
     @Override
     public void specialSkill() {
-        int cost = 8;
+        this.costSkill = 8;
         int amount = 30;
         
         buffAmount = amount;
-        roundBuff = 6;
+        roundBuff = 3;
 
         super.setDamage(super.getDamage() + amount);
-        super.setStaminia(super.getStaminia()-cost);
+        super.setStaminia(super.getStaminia()-costSkill);
     }
 
     @Override

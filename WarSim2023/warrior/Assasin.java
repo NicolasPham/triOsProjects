@@ -22,14 +22,14 @@ public class Assasin extends Warrior {
 
     @Override
     public void specialSkill() {
-        int cost = 8;
+        this.costSkill = 8;
         int amount = 70;
         
         buffAmount = amount;
         roundBuff = 1;
 
         super.setDamage(super.getDamage() + amount);
-        super.setStaminia(super.getStaminia()-cost);
+        super.setStaminia(super.getStaminia()-costSkill);
     }
 
     @Override

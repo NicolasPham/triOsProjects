@@ -5,7 +5,7 @@ import utils.*;
 import armor.*;
 import warrior.*;
 import weapon.*;
-public class Battle {
+public class Battle{
 
     private static Scanner input = new Scanner(System.in);
     private static Random randNum = new Random();
@@ -27,16 +27,21 @@ public class Battle {
     private static int[] botChoice = {0, 0, 0}; // [warriorClass, armorClass, weaponClass]
 
     //General
+    private static String name;
     private static Armor armor = new Armor();
     private static Weapon weapon = new Weapon();
-    private static int[] strikeResult;
+    private static int strikeResult;
     private static boolean isOVer = false;
     private static int turns = 0;
+    private static boolean isPlayerTurn = true;
+    private static boolean surrender = false;
 
     public static void main(String[] args) {
 
         System.out.println("<<======================>>"); 
         ink.welcome();
+        System.out.println("Please enter your name!");
+        name = input.nextLine();
 
         //***************** Select RACE *****************/
         System.out.println("<<======================>>");
@@ -89,43 +94,65 @@ public class Battle {
         
         
         //****** Generating an autobot **********/
-        System.out.println("<<============Bot Generating ...==========>>");
+        System.out.println("<<============Bot Generating==========>>");
+        setup.loading(2000, "Bot generating...");
         botChoice[0] = randNum.nextInt(ink.listCharacter.length);
-        System.out.println( botChoice[0]);
         botChoice[1] = randNum.nextInt(ink.listArmor.length);
-        System.out.println( botChoice[1]);
         botChoice[2] = randNum.nextInt(ink.listWeapon.length);
-        System.out.println( botChoice[2]);
         bWarrior = setup.createWarrior(botChoice[0]);
         bWarrior.setArmor(botChoice[1]+1);
-        // setup.armorSelection(botChoice[1]);
         bWarrior.setWeapon(botChoice[2]+1);
-        // setup.weaponSelection(botChoice[2]);
 
         ink.intialStats(botChoice[0], botChoice[1], botChoice[2], bWarrior, bWarrior.armor(), bWarrior.weapon());
 
         pWarrior.setStatus();
         bWarrior.setStatus();
         /*<============== Attack ==============>*/
+        System.out.println("");
+        setup.loading(2000, "Creating the battle...");
         System.out.println(color.BLUE_BACKGROUND_BRIGHT + "<<============ LET'S GO ==========>>" + color.RESET);
         while (!isOVer) {
-        //Player turn:
-            turns += 1;
-            System.out.printf(color.PURPLE + "Round %d\n " + color.RESET, turns);
-            ink.strikeOptions();
-            choice = input.nextInt();
-            strikeResult = attack.strike(choice, pWarrior, bWarrior);
-            bWarrior.receiverUpdate(strikeResult[0], strikeResult[1]);
-            pWarrior.strikerUpdate(strikeResult[1]);
+            if (isPlayerTurn) {
 
-            //?Printing the sult
-            ink.playerAttack(strikeResult[0], bWarrior.getHealth() >= 0 ? bWarrior.getHealth() : 0);
+                //Player turn:
+                    turns += 1;
+                    System.out.printf(color.PURPLE + "Round %d\n " + color.RESET, turns);
+                    ink.strikeOptions(pWarrior);
+                    choice = input.nextInt();
 
-            if (bWarrior.getHealth() <= 0 ) isOVer = true;
-            
+                    if (choice == 0 ) {
+                        surrender = true;
+                        isOVer = true;
+                    } else {
+                        strikeResult = attack.strike(choice, pWarrior, bWarrior);
+                        bWarrior.receiverUpdate(strikeResult);
+                        
+                        //?Printing the sult
+                        ink.playerAttack(name, "Autobot",strikeResult, bWarrior.getHealth() >= 0 ? bWarrior.getHealth() : 0);
+                        
+                        if (bWarrior.getHealth() <= 0 ) isOVer = true;
+                        isPlayerTurn = false;
+                    }
+                } else {
+                    choice = attack.botChoose(bWarrior);
+                    strikeResult = attack.strike(choice, bWarrior, pWarrior);
+                    pWarrior.receiverUpdate(strikeResult);
+                    ink.playerAttack("Autobot", name, strikeResult, pWarrior.getHealth() >= 0 ? pWarrior.getHealth() : 0);
+                    if (pWarrior.getHealth() <= 0 ) isOVer = true;                
+                    isPlayerTurn = true;
+                System.out.println("<==============End Round==============>");
+            }
+
+
         }//game over
+        
         System.out.println(color.YELLOW_BOLD_BRIGHT + "GAME OVER!" + color.RESET);
-        System.out.printf("You win after %d rounds!!!!!\n", turns);
+        if (surrender) {
+            System.out.println("You have raised the white flag. Battle is over!!!!");
+        } else {
+            if (pWarrior.getHealth() > 0) System.out.printf("You win after %d rounds!!!!!\n", turns);
+            else System.out.printf(color.CYAN + "You loose after %d rounds!!!!!\n" + color.RESET, turns);
+        }
         
 
         
