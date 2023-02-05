@@ -57,7 +57,7 @@ public class Attack {
         } else if (choice == 3) {//! special skill, 100% will hit
             strikeValidation(striker.getStaminia(), striker.costSkill);
             if (striker.isBuff || !strikeValid) {
-                System.out.println("Not allowed");
+                System.out.println("Not allowed, you perform the regular attack");
                 striker.isBuff = false;
             } else {
                 luck = randNum.nextInt(50) + 50; //bound from 50 - 100%

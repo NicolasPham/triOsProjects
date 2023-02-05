@@ -65,7 +65,7 @@
         // Med (3 points each)
 
 
-            Provide a way for the player to
+            DONE !!! ---Provide a way for the player to
             play again (without restarting the
             program from the beginning) Saving
             the game! play again with a reset()
@@ -79,7 +79,7 @@
 
             Add magic attacks
 
-            Add a description class to provide
+            DONE !!! ----Add a description class to provide
             some color commentary for the battle.
 
                 Hulk swings and misses.

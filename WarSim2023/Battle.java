@@ -27,12 +27,13 @@ public class Battle{
     private static String name;
 
     private static int strikeResult;
+    private static int totalPlayerDamage = 0;;
+    private static int totalBotDamage = 0;
     private static boolean isOVer = false;
     private static int turns = 0;
     private static boolean isPlayerTurn = true;
     private static boolean surrender = false;
     private static boolean reset = false;
-    private static int resetTimes;
 
     public static void main(String[] args) {
 
@@ -60,6 +61,7 @@ public class Battle{
 
                     //Player turn:
                         turns += 1;
+
                         System.out.printf(color.PURPLE + "Round %d\n " + color.RESET, turns);
                         ink.strikeOptions(pWarrior);
                         choice = input.nextInt();
@@ -89,6 +91,7 @@ public class Battle{
                                 reset = true;
                             }
                             isPlayerTurn = false;
+                            totalPlayerDamage += strikeResult;
                         } else {
                             System.out.println("Please choose options above");
                         }
@@ -102,6 +105,7 @@ public class Battle{
                             reset = true;
                         }                
                         isPlayerTurn = true;
+                        totalBotDamage += strikeResult;
                     System.out.println("<==============End Round==============>");
                 }
             }//game over
@@ -111,8 +115,8 @@ public class Battle{
         if (surrender) {
             System.out.println("You have raised the white flag. Battle is over!!!!");
         } else {
-            if (pWarrior.getHealth() > 0) System.out.printf("You win after %d rounds!!!!!\n", turns);
-            else System.out.printf(color.CYAN + "You loose after %d rounds!!!!!\n" + color.RESET, turns);
+            if (pWarrior.getHealth() > 0) System.out.printf("You made %d damages in total and win after %d rounds!!!!!\n", totalPlayerDamage, turns);
+            else System.out.printf(color.CYAN + "You loose after %d rounds and %d damages!!!!!\n" + color.RESET, turns, totalBotDamage);
         }
         
 

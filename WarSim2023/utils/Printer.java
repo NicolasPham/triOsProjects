@@ -26,10 +26,6 @@ public class Printer {
     }
 
 
-    public void welcome() {
-        System.out.println(color.PURPLE_BACKGROUND + "WELCOME TO WARSIM 2023" + color.RESET);
-    }
-
     public void characterOptions() {
         System.out.println("Which race would you like to play?");
         System.out.println(color.YELLOW + "1) Human with Knight and Priest" + color.RESET);
@@ -96,9 +92,11 @@ public class Printer {
         if (striker.getStaminia() > 3)  System.out.println("2) Swing");
         if (striker.getStaminia() > striker.costSkill) System.out.println(color.BLUE + "3) Special skill" + color.RESET);
         System.out.println("--press 0 for Surrender !!--");
+        System.out.println("--enter 2023 to reset the battle !!--");
     }
 
     public void playerAttack(String striker, String receiver, int damage, int health) {
+        System.out.println(""); //flush
         int randIndex = randNum.nextInt(4);        
         if (damage > 0 ) {
             System.out.printf(color.RED_BRIGHT + "%s %s %d damages\n", striker,hit[randIndex] ,damage);
@@ -125,6 +123,12 @@ public class Printer {
         deleteLine(1);
         setup.loading(1000, color.BLUE_BRIGHT + "Date retrieved, resetting..." + color.RESET);
         deleteLine(1);
+    }
+
+    public void welcome() {
+        System.out.println(color.WHITE_BACKGROUND + color.PURPLE_BOLD + "WELCOME TO BATTLE ARENA" + color.RESET);
+
+
     }
 
 }
