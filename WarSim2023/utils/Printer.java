@@ -1,17 +1,25 @@
 package utils;
 import warrior.*;
+
+import java.util.Random;
+
 import armor.*;
 import weapon.*;
 
 public class Printer {
 
     public ConsoleColor color = new ConsoleColor();
+    public Random randNum = new Random();
+    public Setup setup = new Setup();
 
     public Armor armor = new Armor();
     public Weapon weapon = new Weapon();
     public String[] listCharacter = {"Knight", "Priest", "Assasin", "Archer", "Barbarian", "Witcher"};
     public String[] listArmor = {"Leather" ,"ChainShirt", "BreastPlate"};
     public String[] listWeapon = {"Axe", "Sword", "Bow", "Dagger", "Riftmaker"}; //{0, 1, 2, 3, 4}
+
+    public String[] miss = {"smashes and misses", "try to reach the target but misses", "misses", "not even touch the hair, misses"};
+    public String[] hit = {"swings and hits for", "smash the enemy like an potato for", "easy hit,", "hurts the enemy for"};
 
     public Printer() {
 
@@ -43,12 +51,13 @@ public class Printer {
         System.out.println("2) Witcher - medium damage, big health but just faster than Barbarian");
     }
 /********************   Stats Selection ********************************/ 
-    public void intialStats(int characterChoice, int armorChoice, int weaponChoice, Warrior warrior, Armor armor, Weapon weapon) {
+    public void intialStats(String name, int characterChoice, int armorChoice, int weaponChoice, Warrior warrior, Armor armor, Weapon weapon) {
         int totalDefend = warrior.getDefend() + armor.getArmor()[0] + weapon.getWeapon()[2];
         int totalDamage = warrior.getDamage() + weapon.getWeapon()[0];
         int totalSpeed = warrior.getSpeed() + armor.getArmor()[1] + weapon.getWeapon()[1];
 
-        System.out.printf(color.YELLOW + "Selection: \t%s, %s, %s\n", listCharacter[characterChoice], armor.listArmor[armorChoice], weapon.listWeapon[weaponChoice] + color.RESET);
+        System.out.printf(color.YELLOW + "Name: %s\n" + color.RESET, name);
+        System.out.printf("Selection: \t%s, %s, %s\n", listCharacter[characterChoice], armor.listArmor[armorChoice], weapon.listWeapon[weaponChoice] + color.RESET);
         System.out.println("Health: \t" + warrior.getHealth());
         System.out.printf("Defend: \t%d + %d + %d = %d\n", warrior.getDefend(), armor.getArmor()[0], weapon.getWeapon()[2], totalDefend);
         System.out.printf("Damage: \t%d + %d = %d\n",warrior.getDamage(), weapon.getWeapon()[0], totalDamage);
@@ -90,11 +99,32 @@ public class Printer {
     }
 
     public void playerAttack(String striker, String receiver, int damage, int health) {
+        int randIndex = randNum.nextInt(4);        
         if (damage > 0 ) {
-            System.out.printf(color.RED_BRIGHT + "%s hit %d, and the %s has %d remaining health\n"  + color.RESET, striker, damage, receiver, health);
+            System.out.printf(color.RED_BRIGHT + "%s %s %d damages\n", striker,hit[randIndex] ,damage);
+            System.out.printf("%s has %d remaining health\n" + color.RESET, receiver, health);
         } else {
-            System.out.println(color.GREEN + "Missed the hit" + color.RESET);
+            System.out.printf(color.GREEN + "%s %s\n" + color.RESET, striker, miss[randIndex]);
         }
+    }
+
+    public void deleteLine(int count) {
+        System.out.print(String.format("\033[%dA",count)); // Move up
+        System.out.print("\033[2K"); // Erase line content
+    }
+
+    public void saveGame() {
+        System.out.println("");
+        setup.loading(2000, color.YELLOW + "Saving game..." + color.RESET);
+        deleteLine(1);
+        System.out.println(color.BLUE_BRIGHT + "Game saved" + color.RESET);
+    }
+
+    public void resetGame() {
+        setup.loading(1000, color.YELLOW + "Retrieving data..." + color.RESET);
+        deleteLine(1);
+        setup.loading(1000, color.BLUE_BRIGHT + "Date retrieved, resetting..." + color.RESET);
+        deleteLine(1);
     }
 
 }
