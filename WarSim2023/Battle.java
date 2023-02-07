@@ -6,10 +6,8 @@ import warrior.*;
 public class Battle{
 
     private static Scanner input = new Scanner(System.in);
-    private static Random randNum = new Random();
     private static ConsoleColor color = new ConsoleColor();
-    private static Game game = new Game();
-    private static Validation validation = new Validation();
+    private static Game game = new Game();  
 
     //Utils
     private static Printer ink = new Printer();
